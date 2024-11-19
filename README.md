@@ -1,70 +1,104 @@
-<<<<<<< HEAD
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# API-TagTracker  
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Descrição do Projeto  
+A **API-TagTracker** é o componente de backend do sistema **ACELERA: TagTracker**, desenvolvido para gerenciamento e controle de estoque utilizando tecnologia RFID. A API foi implementada em **Laravel** e é responsável por intermediar a comunicação entre o **Arduino MEGA**, o site gerencial e o banco de dados **PostgreSQL** em um contêiner Docker.  
 
-## About Laravel
+### Funcionalidades principais:  
+- Receber e armazenar o UID de tags RFID lidas pelo Arduino.  
+- Consultar e retornar informações associadas a tags RFID.  
+- Gerenciar dados do estoque vinculados às etiquetas.  
+- Comunicação segura e eficiente entre dispositivos físicos e o sistema gerencial.  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Estrutura do Projeto  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Framework utilizado:** Laravel 11.27.2  
+- **Banco de Dados:** PostgreSQL (em contêiner Docker)  
+- **Servidor de Desenvolvimento:** Apache  
+- **Ambiente Virtual:** Linux Mint  
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Requisitos do Sistema  
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Para rodar o projeto localmente:  
+- **PHP:** Versão >= 8.2  
+- **Composer:** Versão atualizada  
+- **Docker:** Para o contêiner do PostgreSQL  
+- **Extensões PHP:**  
+  - pdo_pgsql  
+  - mbstring  
+  - curl  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Configuração Inicial  
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Clone este repositório:  
+   ```bash  
+   git clone https://github.com/seuusuario/API-TagTracker.git  
+   ```  
 
-### Premium Partners
+2. Acesse o diretório do projeto:  
+   ```bash  
+   cd API-TagTracker  
+   ```  
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3. Instale as dependências do Laravel:  
+   ```bash  
+   composer install  
+   ```  
 
-## Contributing
+4. Configure o arquivo `.env`:  
+   - Duplique o arquivo `.env.example` e renomeie para `.env`.  
+   - Atualize os parâmetros do banco de dados com suas credenciais:  
+     ```dotenv  
+     DB_CONNECTION=pgsql  
+     DB_HOST=127.0.0.1  
+     DB_PORT=5432  
+     DB_DATABASE=tagtracker  
+     DB_USERNAME=postgres  
+     DB_PASSWORD=sua_senha  
+     ```  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. Gere a chave da aplicação:  
+   ```bash  
+   php artisan key:generate  
+   ```  
 
-## Code of Conduct
+6. Execute as migrações para criar as tabelas no banco de dados:  
+   ```bash  
+   php artisan migrate  
+   ```  
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Ferramentas Utilizadas  
 
-## License
+- **Laravel Framework:** Desenvolvimento do backend.  
+- **Docker:** Contêinerização do banco de dados PostgreSQL.  
+- **Guzzle HTTP:** Comunicação entre a API e o site gerencial.  
+- **Postman:** Testes de rotas e validação de endpoints.  
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-=======
-# API-TagTracker
->>>>>>> d1efa0acb6c7e204a410f1a9aa7b9d63f510430c
+---
+
+## Estrutura de Pastas  
+
+- **`/app`**: Contém os controladores, modelos e lógica de negócios.  
+- **`/routes`**: Define as rotas da API, especialmente no arquivo `api.php`.  
+- **`/database`**: Arquivos de migrações e seeds para o banco de dados.  
+- **`/config`**: Configurações gerais da aplicação.  
+
+---
+
+## Contribuidores  
+
+- **Matheus Vilela Reis dos Santos** - Desenvolvimento do Backend.  
+- **Otávio Henrique Nascimento de Souza** - Documentação.  
+
+---
+
+## Licença  
+
+Este projeto é protegido sob a licença [MIT](https://opensource.org/licenses/MIT).  
